@@ -8,12 +8,12 @@ bot = TeleBot(TOKEN)
 
 def handle_admin_command(bot:TeleBot , message: Message):
     if message.text.startswith("/add_book "):
-        book_name = message.text[len("/add_book ")+1:]
+        book_name = message.text[len("/add_book "):]
         book_handler.add_book(book_name)
         bot.reply_to(message, "Added successfully")
         return 
     if message.text == "/list":
-        books = book_handler.get_all()
+        books = book_handler.get_all_book()
         bot.reply_to(message, "\n".join(books))
         return 
     if message.text.startswith("/delete "):
@@ -23,17 +23,22 @@ def handle_admin_command(bot:TeleBot , message: Message):
     
     if message.text == '/status':
         bot.send_message(GROUP_ID, book_handler.get_status())
+        return
 
     
     bot.reply_to(message, "Unknown command")
 
 def handle_user_command(bot, message):
     try:
-        if message.text.startwith("/set_page "):
+        if message.text.startswith("/set_page "):
             book, page = message.text[len("/set_page "):].split(" ")
             book_handler.set_user_page(book, message.from_user.username, page)
-    except:
+            bot.reply_to(message, "success")
+            return
+    except Exception as e:
+        print(e, message)
         bot.reply_to(message, "Something went wrong")
+    bot.reply_to(message, "Unknown command")
 
 
 @bot.message_handler()
