@@ -1,12 +1,20 @@
 const os = require("os");
 const chalk = require("chalk");
+const express = require("express");
 const mongoose = require("mongoose");
 const { Telegraf } = require("telegraf");
 
 require("dotenv").config();
 
-const { bot_token, owner, group_id, db_base_url, version, prefix } =
-  process.env;
+const {
+  bot_token,
+  owner,
+  group_id,
+  db_base_url,
+  version,
+  prefix,
+  PORT = 5001,
+} = process.env;
 
 const { start, help } = require("./lib/help");
 const { getUser } = require("./lib/tele");
@@ -18,6 +26,9 @@ const {
   setPage,
   getStatistics,
 } = require("./lib/book_handler");
+
+const app = express();
+// const port = PORT || 5001;
 
 const errorText = "Something went wrong 😐";
 
@@ -203,3 +214,7 @@ telegram.getMe().then((getme) => {
 });
 process.once("SIGINT", () => bot.stop("SIGINT"));
 process.once("SIGTERM", () => bot.stop("SIGTERM"));
+
+app.listen(PORT, () => {
+  console.log(`Server is running on port: ${PORT}`);
+});
