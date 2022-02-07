@@ -198,18 +198,18 @@ bot.command("send", async (ctx) => {
 bot.launch();
 telegram.getMe().then((getme) => {
   itsPrefix = prefix != "" ? prefix : "No Prefix";
-  console.log(
-    chalk.greenBright(" ====================================================")
-  );
-  console.log(chalk.greenBright(" │ + Owner    : " + owner || ""));
-  console.log(chalk.greenBright(" │ + Bot Name : " + getme.first_name || ""));
-  console.log(chalk.greenBright(" │ + Version  : " + version || ""));
-  console.log(chalk.greenBright(" │ + Host     : " + os.hostname() || ""));
-  console.log(chalk.greenBright(" │ + Platfrom : " + os.platform() || ""));
-  console.log(chalk.greenBright(" │ + Prefix   : " + itsPrefix));
-  console.log(
-    chalk.greenBright(" ====================================================")
-  );
+  //   console.log(
+  //     chalk.greenBright(" ====================================================")
+  //   );
+  //   console.log(chalk.greenBright(" │ + Owner    : " + owner || ""));
+  //   console.log(chalk.greenBright(" │ + Bot Name : " + getme.first_name || ""));
+  //   console.log(chalk.greenBright(" │ + Version  : " + version || ""));
+  //   console.log(chalk.greenBright(" │ + Host     : " + os.hostname() || ""));
+  //   console.log(chalk.greenBright(" │ + Platfrom : " + os.platform() || ""));
+  //   console.log(chalk.greenBright(" │ + Prefix   : " + itsPrefix));
+  //   console.log(
+  //     chalk.greenBright(" ====================================================")
+  //   );
   console.log(chalk.whiteBright("╭─── [ LOG ]"));
 });
 process.once("SIGINT", () => bot.stop("SIGINT"));
